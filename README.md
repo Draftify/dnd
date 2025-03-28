@@ -9,7 +9,17 @@ Multi-dnd is a React-based project that implements multi-container drag-and-drop
 
 # Demo
 ![Screenshot 2025-03-28 at 11 19 30 AM](https://github.com/user-attachments/assets/d21eaf13-f3ec-4e55-afcf-594a801f6a68)
+#### Items drag and drop
 ![Screenshot 2025-03-28 at 11 20 09 AM](https://github.com/user-attachments/assets/e42820ca-09de-4204-b309-d32e3a208f6e)
+#### Containers drag and drop
+![Screenshot 2025-03-28 at 12 04 59 PM](https://github.com/user-attachments/assets/3289899c-bdad-4e4b-842a-cab79c9a41d4)
+
+## Example Console Logs:
+### Column Reordering:
+📊 New column order: (3) ['202', '101', '303']
+
+### Task Movement:
+🚀 Task moved from column '101' to column '202'
 
 
 ## Contribution
