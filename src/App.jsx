@@ -24,26 +24,47 @@ export default function App() {
     202: [2020, 2021],
     303: [],
   });
-  console.log("Update on column or task position:", items);
+
+  // This determines the sequence in which columns are displayed.
+  // Ensure 'columnOrder' is updated whenever 'items' change or fetched.
+
+  const [columnOrder, setColumnOrder] = useState(() => Object.keys(items));
+
+
+  // Debugging logs to verify the current state of 'items' and 'columnOrder'. 
+  console.log(items);
+  console.log(columnOrder);
+
 
   return (
     <DragDropProvider
       onDragOver={(event) => {
         const { source } = event.operation;
-
         if (source.type === 'column') return;
-
         setItems((items) => move(items, event));
       }}
+      onDragEnd={(event) => {
+        const { source, _ } = event.operation;
+        if (event.canceled || source.type !== 'column') return;
+        setColumnOrder((columns) => move(columns, event));
+      }}
+
     >
       <div className="Root">
-        {Object.entries(items).map(([column, items], index) => (
-          <Column columns={columns} key={column} id={column} index={index}>
-            {items.map((id, index) => (
-              <Item tasks={tasks} key={id} id={id} index={index} column={column} />
-            ))}
-          </Column>
-        ))}
+        {Object.entries(items).map(([columnId, itemIds], index) => {
+          const currentColumn = columns.find(col => col.id.toString() === columnId);
+          const columnTasks = tasks.filter(task => itemIds.includes(task.id));
+          return (
+            <Column currentColumn={currentColumn} columns={columns} key={columnId} id={columnId} index={index}>
+              {itemIds.map((id, index) => {
+                const currentTask = columnTasks.find(task => task.id === id);
+                return (
+                  <Item tasks={columnTasks} key={id} id={id} index={index} task={currentTask} />
+                );
+              })}
+            </Column>
+          );
+        })}
       </div>
     </DragDropProvider>
   );
