@@ -19,8 +19,7 @@ Multi-dnd is a React-based project that implements multi-container drag-and-drop
 📊 New column order: (3) ['202', '101', '303']
 
 ### Task Movement:
-🚀 Task moved from column '101' to column '202'
-
+🚀 Task moved from column '101' to column '202'. Moved item is at position 0 in the group.
 
 ## Contribution
 
